@@ -10,7 +10,7 @@ server.listen(process.env.PORT || 3000);
 console.log('Serber runing.....');
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/views/index.html')
 });
 
 io.sockets.on('connection', function(socket){
@@ -37,6 +37,7 @@ io.sockets.on('connection', function(socket){
         updateUsersnames();
     });
     
+ 
     
     function updateUsersnames(){
         io.sockets.emit('get users', users);

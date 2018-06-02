@@ -11,6 +11,12 @@
         #messageArea{
             display:none;
         }
+        .msg{
+            padding: 14px 0px;
+            margin: 0 20px;
+            border-bottom: 1px solid #e9e9e9;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -35,12 +41,11 @@
                 </div>
             </div>
             <div class="col-md-8" style="float: right;">
-                <div class= "chat" id="chat"></div>
-                
-                <form id="messageForm">
+                <div class= "chat" id="chat" style="height: 400px; overflow: auto; background: #f9f9f9"></div>
+                <form id="messageForm" positon="bottom">
                     <div class="form-group">
-                        <label>Enter Message</label>
-                        <textarea class="form-control" id="message"></textarea>
+                        
+                        <textarea class="form-control" id="message" placeholder="Message"></textarea>
                         <br/>
                         <input type="submit" class="btn btn-primary" value="Send Message" />
                     </div>
@@ -70,7 +75,9 @@
             });
             
             socket.on('new message', function(data){
-                $chat.append('<div class= "well"><strong>'+data.user+'</strong>: ' + data.msg+'</div>');
+                  
+                $chat.append('<div class= "msg" ><strong>'+data.user+'</strong>: ' + data.msg+'</div>');
+                
             });
             
             $userForm.submit(function(e){
@@ -93,6 +100,9 @@
                 
                 $users.html(html);
             });
+           
+
+                        
         });
     </script>
 </body>
